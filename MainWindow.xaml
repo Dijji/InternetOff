@@ -1,7 +1,8 @@
-﻿<Window x:Class="InternetOff.MainWindow"
+﻿<!-- Copyright (c) 2019, Dijji, and released under Ms-PL.  This can be found in the root of this distribution.-->
+<Window x:Class="InternetOff.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Internet" Height="150" Width="250">
+        Title="InternetOff" Height="150" Width="250">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
@@ -9,14 +10,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Content="Turn On" Name="cbOn" Width="100" VerticalAlignment="Bottom"
-                Click="cbOn_Click" IsEnabled="{Binding CanTurnOn}"/>
-        <TextBox Grid.Row="1" Text="Working..." Background="Transparent" FontWeight="Bold" 
+        <TextBlock Grid.Row="0" Text="{Binding Path=Status}" Background="Transparent" FontWeight="Bold" 
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Visibility="{Binding Path=IsWorking, Converter={StaticResource BoolToVis}}"/>
-        <Button Grid.Row="2" Content="Turn Off" Name="cbOff" Width="100" VerticalAlignment="Top"
-                Click="cbOff_Click" IsEnabled="{Binding CanTurnOff}"/>
+        <Button Grid.Row="1" Content="{Binding Path=Command}" Name="cbOnOff" Width="100" VerticalAlignment="Top"
+                Click="cbOnOff_Click" IsEnabled="{Binding StatusKnown}"/>
     </Grid>
 </Window>

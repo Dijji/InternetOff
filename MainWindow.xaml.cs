@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿// Copyright (c) 2019, Dijji, and released under Ms-PL.  This can be found in the root of this distribution. 
+
+using System;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using System.Windows.Media;
 using System.Management.Automation;
 using System.Threading.Tasks;
 
@@ -18,52 +17,6 @@ namespace InternetOff
         private const string RuleName = "Block Internet";
         private State s = new State();
 
-        class State : INotifyPropertyChanged
-        {
-            private bool? isConnected = null;
-            private bool isWorking;
-
-            public bool CanTurnOn { get { return IsConnected == false && !IsWorking; } }
-            public bool CanTurnOff { get { return IsConnected == true && !IsWorking; } }
-            public Brush StopGoColour
-            {
-                get
-                {
-                    if (IsConnected == null || IsWorking)
-                        return Brushes.CornflowerBlue;
-                    else
-                        return (bool)IsConnected ? Brushes.LightGreen : Brushes.OrangeRed;
-                }
-            }
-
-            public bool? IsConnected 
-            { 
-                get { return isConnected; }
-                set { isConnected = value; OnPropertyChanged(nameof(StopGoColour));
-                        OnPropertyChanged(nameof(CanTurnOn)); OnPropertyChanged(nameof(CanTurnOff)); }
-            }
-
-            public bool IsWorking
-            {
-                get { return isWorking; }
-                set { isWorking = value; OnPropertyChanged(nameof(IsWorking)); OnPropertyChanged(nameof(StopGoColour));
-                    OnPropertyChanged(nameof(CanTurnOn)); OnPropertyChanged(nameof(CanTurnOff)); }
-            }
-
-            public event PropertyChangedEventHandler PropertyChanged;
-
-            private void OnPropertyChanged(String info)
-            {
-                if (PropertyChanged != null)
-                {
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs(info));
-                    });
-                }
-            }
-        }
-
         public MainWindow()
         {
             InitializeComponent();
@@ -74,20 +27,18 @@ namespace InternetOff
             });
         }
         
-        private void cbOff_Click(object sender, RoutedEventArgs e)
+        private void cbOnOff_Click(object sender, RoutedEventArgs e)
         {
-            Task.Run(() =>
-            {
-                AddBlock();
-            });
-        }
-
-        private void cbOn_Click(object sender, RoutedEventArgs e)
-        {
-            Task.Run(() =>
-            {
-                RemoveBlock();
-            });
+            if ((bool)s.IsConnected) 
+                Task.Run(() =>
+                {
+                    AddBlock();
+                });
+            else
+                Task.Run(() =>
+                {
+                    RemoveBlock();
+                });
         }
 
         private void AddBlock()
