@@ -1,6 +1,6 @@
 # InternetOff
 
-InternetOff is a small (14K) program for Windows 8.1 or Windows 10 which turns access to the Internet off and on again, without affecting access to the local network.
+Sometimes you just want to make sure that nothing on your PC is talking to the Internet. InternetOff is a small (14K) program for Windows 8.1 or Windows 10 which turns access to the Internet off and on again, without affecting access to the local network.
 
 It doesn't do anything that you couldn't do yourself using the Windows Defender Firewall UI, but it does it with the press of a single button, with no need to remember the required firewall rule options.
 
