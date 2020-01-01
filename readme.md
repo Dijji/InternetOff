@@ -1,8 +1,8 @@
 # InternetOff
 
-InternetOff is a small program for Windows 8.1 or Windows 10 which turns access to the Internet off and on again, without affecting access to the local network.
+InternetOff is a small (14K) program for Windows 8.1 or Windows 10 which turns access to the Internet off and on again, without affecting access to the local network.
 
-It doesn't do anything that you couldn't do yourself using the Windows Defender Firewall UI, but it does do it with the press of a single button, with no need to remember the required firewall rule options.
+It doesn't do anything that you couldn't do yourself using the Windows Defender Firewall UI, but it does it with the press of a single button, with no need to remember the required firewall rule options.
 
 This is what it looks like:
 
@@ -10,7 +10,9 @@ This is what it looks like:
 
 There are just two states, Internet on and Internet off, and a button to switch between them.
 
-To install InternetOff, download the zip file from the Releases tab, and extract the two files that it contains to wherever you keep your program files.
+Changing firewall rules requires administrator privileges. I have released InternetOff as open source because I wouldn't trust any download that wasn't fully transparent with such privileges, so why should you? Instructions for building the program can be found in the root directory of the source.
+
+To install InternetOff ready built, download the InternetOff.zip file from the Releases tab, and extract the two files that it contains to wherever you keep your program files.
 ## How it works
 It used to be quite hard to turn off access to the Internet without also turning off access to the local network. InternetOff takes advantage of a Firewall enhancement delivered in Windows 8.1 (or possibly Windows 8, but I don't have a copy to check) which allows you to specifically block access to Internet addresses only. The price is that InternetOff does not work on Windows 7.
 
